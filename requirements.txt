@@ -1,1 +1,11 @@
-flaskpandasscikit-learntensorflow==2.19.0
+Flask==2.3.3
+gunicorn==21.2.0
+
+tensorflow==2.20.0
+protobuf>=5.28.0,<6.0.0
+tensorboard~=2.20.0
+tensorflow-estimator~=2.15.0
+
+# Optional
+numpy>=1.23.5
+pandas>=1.5.3
