@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Restaurant Recommender</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class = "container">
+    <h1>Find Restaurants</h1>
+    <div class = "card">
+    <form method="post">
+        <label for="location">Location:</label>
+        <select name="location" id="location">
+            {% for loc in locations %}
+            <option value="{{ loc }}">{{ loc.replace('_', ' ').title() }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label>Online Order:</label>
+        <input type="radio" name="online_order" value="1" checked> Yes
+        <input type="radio" name="online_order" value="0"> No<br><br>
+
+        <label>Book Table:</label>
+        <input type="radio" name="book_table" value="1"> Yes
+        <input type="radio" name="book_table" value="0" checked> No<br><br>
+
+        <label for="cuisines">Select Cuisines:</label><br>
+        <select name="cuisines" id="cuisines" multiple size="8">
+            {% for c in cuisines %}
+            <option value="{{ c }}">{{ c.replace('_', ' ').title() }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <input type="submit" value="Get Recommendations">
+    </form>
+    </div>
+</div>
+
+    {% if message %}
+    <p><strong>{{ message }}</strong></p>
+    {% endif %}
+
+    {% if recommendations %}
+    <h2>Recommended Restaurants:</h2>
+    <ul>
+        {% for r in recommendations %}
+        <li>{{ r }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+</html>
